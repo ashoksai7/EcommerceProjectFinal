@@ -1,0 +1,1 @@
+I am written through asynchronous method using promises

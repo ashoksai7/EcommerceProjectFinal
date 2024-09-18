@@ -1,0 +1,9 @@
+.home{
+    text-align: center;
+    display: flexbox;
+    font-size: x-large;
+    color: burlywood;
+    background-color: cadetblue;
+    Height: 400px;
+    Margin: 50px;
+}

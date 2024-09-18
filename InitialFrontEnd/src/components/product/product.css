@@ -1,0 +1,12 @@
+.prodImage{
+    width: 100px;
+    height: 100px;
+}
+
+.prodDiv{
+    width: 30%;
+    display: inline-block;
+    border: grey 2px solid;
+    border-radius: 5%;
+    padding: 0.5em;
+}
