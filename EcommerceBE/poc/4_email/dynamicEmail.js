@@ -39,11 +39,11 @@ async function emailSender(template,receiverEmail,emailObject){
         bcc:"ashok.sai7@gmail.com",
         attachments:[
             {
-                filename: "gruhapravesham.jpeg",
-                path:"/Users/saiashokkrishnareddysuguri/Downloads/homamimage.jpeg"
+                filename: "MuskTrumpX.webp",
+                path:"/Users/saiashokkrishnareddysuguri/Desktop/fsCapstone27thMay/EcommerceBE/public/MuskTrumpX.webp"
             }
         ],
-        subject: "Thank you for your signup || Bongulo platform || V1.1", // Subject line
+        subject: "Thank you for your signup || Suguri platform || V1.1", // Subject line
         text: "Hello world?", // plain text body
         html: finalEmailContent // html body
     }

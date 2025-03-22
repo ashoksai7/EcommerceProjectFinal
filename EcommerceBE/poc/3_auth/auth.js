@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 const promisify = require("util").promisify;
 const path = require("path");
 const emailSender = require("../4_email/dynamicEmail");
+const bcrypt = require("bcrypt");
 //Using rate limiter to limit number of requests.
 const rateLimit = require("express-rate-limit");
 const limiter = rateLimit({
@@ -111,7 +112,18 @@ const loginController = async(req,res) =>{
         }
 
         //3.
-        if(user.password !== password){
+        const isSame = await bcrypt.compare(password,user.password);
+        /**
+         * In above step though we did not pass
+         * random salt to compare function we
+         * are able to compare. This is because
+         * random salt is the part(sub string)
+         * of hashedPassword(password stored in DB) itself.
+         * Go through bcrypt.js in this sanme folder to
+         * understand better
+         */
+        console.log("result",isSame);
+        if(!isSame){
             console.log("User password",user.password);
             return res.status(400).json({
                 message:"email/password is incorrect"

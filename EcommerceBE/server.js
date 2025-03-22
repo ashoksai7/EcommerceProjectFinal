@@ -46,7 +46,7 @@ const prodRouter = require("./routes/productRouter");
 const bookingRouter = require("./routes/bookingRouter");
 //const reviewRouter = require("./routes/reviewRouter");
 
-const {loginController,protectRouteMiddleWare} = require("./poc/3_auth/auth");
+const {loginController,protectRouteMiddleWare, signupController} = require("./poc/3_auth/auth");
 
 //app.use is the middleware
 app.use(function(req,res,next){
@@ -84,6 +84,7 @@ app.use('/api/v1/booking',bookingRouter);
 //app.use('/api/v1/review',reviewRouter);
 
 app.post('/api/v1/login',loginController);
+app.post('/api/v1/signup',signupController);
 
 app.listen(PORT,function(req,res){
     console.log("app is listening on port",PORT);
