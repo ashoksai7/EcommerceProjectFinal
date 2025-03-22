@@ -44,7 +44,7 @@ app.use(cookieParser())
 const userRouter = require("./routes/userRouter");
 const prodRouter = require("./routes/productRouter");
 const bookingRouter = require("./routes/bookingRouter");
-const reviewRouter = require("./routes/reviewRouter");
+//const reviewRouter = require("./routes/reviewRouter");
 
 const {loginController,protectRouteMiddleWare} = require("./poc/3_auth/auth");
 
@@ -81,7 +81,7 @@ app.use(express.json());
 app.use('/api/v1/user',userRouter);
 app.use('/api/v1/product',prodRouter);
 app.use('/api/v1/booking',bookingRouter);
-app.use('/api/v1/review',reviewRouter);
+//app.use('/api/v1/review',reviewRouter);
 
 app.post('/api/v1/login',loginController);
 

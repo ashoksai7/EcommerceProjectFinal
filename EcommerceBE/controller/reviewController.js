@@ -16,6 +16,5 @@ const getAllReviews = async function(req,res){
 
 
 module.exports = {
-    getAllReviews,
-    productReview
+    getAllReviews
 }
