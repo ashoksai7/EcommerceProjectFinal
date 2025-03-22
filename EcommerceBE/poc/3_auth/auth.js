@@ -112,6 +112,7 @@ const loginController = async(req,res) =>{
 
         //3.
         if(user.password !== password){
+            console.log("User password",user.password);
             return res.status(400).json({
                 message:"email/password is incorrect"
             })
