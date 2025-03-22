@@ -333,8 +333,8 @@ app.patch("/resetPassword/:id",resetPasswordController);
 app.get("/allowIfLoggedIn",protectRouteMiddleWare,limiter,getUserData);
 app.get("/allowIfAdmin",protectRouteMiddleWare,checkIfAdmin,getAllUserData);
 
-app.listen(PORT,function () {
-     console.log(`Server is listening on port`, PORT);
- })
+// app.listen(PORT,function () {
+//      console.log(`Server is listening on port`, PORT);
+//  })
 
 module.exports = {signupController,loginController,protectRouteMiddleWare};
