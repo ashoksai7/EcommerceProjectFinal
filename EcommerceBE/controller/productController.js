@@ -4,8 +4,10 @@ const {addResource,
     getAllResource,
     getResourceById,
     getResourceByName,
+    getResourceByCategory,
     updateResource,
-    deleteResource} = require("../utils/resourceFactory");
+    deleteResource
+} = require("../utils/resourceFactory");
 
 const addProduct = addResource(productModel);
 
@@ -15,10 +17,12 @@ const getProductById = getResourceById(productModel);
 
 const getProductByName = getResourceByName(productModel);
 
+const getProductByCategory = getResourceByCategory(productModel);
+
 const updateProduct= updateResource(productModel);
 
 const deleteProduct = deleteResource(productModel);
 
 module.exports = {
-    addProduct,getAllProducts,getProductById,getProductByName,updateProduct,deleteProduct
+    addProduct,getAllProducts,getProductById,getProductByName,getProductByCategory,updateProduct,deleteProduct
 }

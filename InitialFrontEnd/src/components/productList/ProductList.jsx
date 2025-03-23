@@ -11,7 +11,7 @@ const ProductList = ()=>{
     //Using open source API in below useFetchData method
     //const {data: prodList,error,isLoading} = useFetchData(`https://fakestoreapi.com/products/category/${categoryName}`,[]);
     //Using our own backend source API in below useFetchData method
-    const {data: prodList,error,isLoading} = useFetchData(URL_CONSTANTS.PRODUCT_LIST,[]);
+    const {data: prodList,error,isLoading} = useFetchData(`${URL_CONSTANTS.GET_PRODUCT_BY_CAT}/${categoryName}`,[]).data;
     console.log(prodList);
     //console.log(data);
     return (

@@ -86,7 +86,38 @@ const getResourceByName  = function(modelName){
             const {name} = req.params;
     
             //Using findOne method available in useerModel to fetch the detail of one document with specified value
-            let currResourceData = await modelName.find({ name: name });
+            let currResourceData = await modelName.find({ title: name });
+            //let currUserData = await userModel.findById(id);
+    
+            
+            console.log(currResourceData);
+            if(currResourceData.length==0){
+                res.status(400).json({
+                    message:"Resource not found"
+                })
+            }
+            else{
+                res.status(200).json({
+                    message:" Resource fetched",
+                    data:currResourceData
+                })
+            }
+        }
+        catch(err){
+            res.status(500).json({message:err.message});
+        }
+    }
+}
+
+const getResourceByCategory  = function(modelName){
+    console.log(modelName,"creating getResoureByCategory method");
+    return async (req,res)=>{
+        try{
+            //storing params passed by request into the variables. In this case "id" is the only param passed.
+            const {category} = req.params;
+    
+            //Using findOne method available in useerModel to fetch the detail of one document with specified value
+            let currResourceData = await modelName.find({ category: category });
             //let currUserData = await userModel.findById(id);
     
             
@@ -164,6 +195,6 @@ const deleteResource = function(modelName){
 }
 
 module.exports = {
-    addResource,getAllResource,getResourceById,getResourceByName,updateResource,deleteResource
+    addResource,getAllResource,getResourceById,getResourceByName,getResourceByCategory,updateResource,deleteResource
 }
 
