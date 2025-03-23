@@ -7,12 +7,12 @@ import URL_CONSTANTS from "../../constants/urlConstants";
 
 const ProductList = ()=>{
     const {categoryName} = useParams(); //way to use params passed for dyanamic routing
-    console.log(categoryName);
+    //console.log(categoryName);
     //Using open source API in below useFetchData method
     //const {data: prodList,error,isLoading} = useFetchData(`https://fakestoreapi.com/products/category/${categoryName}`,[]);
     //Using our own backend source API in below useFetchData method
     const {data: prodList,error,isLoading} = useFetchData(`${URL_CONSTANTS.GET_PRODUCT_BY_CAT}/${categoryName}`,[]).data;
-    console.log(prodList);
+    //console.log(prodList);
     //console.log(data);
     return (
         <div className="prodListClass">

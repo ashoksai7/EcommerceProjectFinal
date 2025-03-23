@@ -140,6 +140,33 @@ const getResourceByCategory  = function(modelName){
     }
 }
 
+const getResourceCategories = function(modelName){
+    console.log(modelName,"creating getCategories method");
+    return async (req,res)=>{
+        try{
+            //console.log("Sending users details");
+            const allResourceData = await modelName.find({}).select('category');
+            const categories = allResourceData.map((obj)=>obj.category);
+            const uniquecategories = [];
+            categories.forEach(item => {
+                if (!uniquecategories.includes(item)) {
+                    uniquecategories.push(item)
+                }
+            })
+            res.status(200).json({
+                message: "Resource list",
+                data: uniquecategories
+            });
+        }
+        catch(err){
+            res.status(500).json({
+                message:err.message,
+            });
+        }
+
+    }
+}
+
 const updateResource = function(modelName){
     console.log(modelName,"Creating update resource method");
     return async (req,res)=>{
@@ -195,6 +222,6 @@ const deleteResource = function(modelName){
 }
 
 module.exports = {
-    addResource,getAllResource,getResourceById,getResourceByName,getResourceByCategory,updateResource,deleteResource
+    addResource,getAllResource,getResourceById,getResourceByName,getResourceByCategory,getResourceCategories,updateResource,deleteResource
 }
 
