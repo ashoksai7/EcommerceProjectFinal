@@ -1,18 +1,40 @@
 import React, { useState } from 'react';
 import './login.css';
+import useSendData from "../../hooks/useSendData";
+import URL_CONSTANTS from "../../constants/urlConstants";
+import Axios from 'axios';
+
 const LoginPage = () =>{
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = (e) => {
+  const [error, setError] = useState('');   
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === '' || password === '') {
       setError('Both fields are required');
     } else {
       // Handle login logic (e.g., send to backend or authenticate)
-      setError('');
-      alert('Logged in successfully!');
+      const requestBody = {
+        email: username,
+        password: password
+      };
+
+      try {
+        const res = await Axios.post(`${URL_CONSTANTS.POST_LOGIN}`,requestBody);
+        //console.log(res);
+        // Handle successful response
+        console.log('Success:', res.data);
+        setError('');
+        alert('Logged in successfully!');
+      } catch (error) {
+        // Handle error
+        if(error.response)
+        setError(error.response.data.message);
+        console.error('Error:', error.response ? error.response.data : error.message);
+        
+      }
+      
+      
     }
   };
 
