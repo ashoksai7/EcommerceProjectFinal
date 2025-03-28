@@ -4,6 +4,8 @@ import {
     Route
 } from 'react-router-dom';
 
+import React, { useState } from 'react';
+
 import Header from '../components/header/Header';
 import Home from '../components/home/Home';
 import AboutUs from '../components/aboutUs/AboutUs';
@@ -15,19 +17,24 @@ import useFetchData from '../hooks/useFetchData.js';
 import ProductList from '../components/productList/ProductList';
 import URL_CONSTANTS from "../constants/urlConstants";
 const AppRoutes = () => {
-
-    const isAuthenticated = false;
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    let isAuth = isAuthenticated;
+    const toggleAuthentication = ()=>{
+        setIsAuthenticated(!isAuthenticated);
+        isAuth = isAuthenticated;
+        console.log(isAuthenticated);
+    }
     //const {data: categories,error,isLoading} = useFetchData('https://fakestoreapi.com/products/categories'); {/* data can be used with alias categories */}
     const {data: categories,error,isLoading} =useFetchData(URL_CONSTANTS.GET_CATEGORIES,[]).data;
     return (
         <Router>
-            <Header categories={categories} isLoading={isLoading} isAuthenticated={isAuthenticated}/>
+            <Header categories={categories} isLoading={isLoading} isAuthenticated={isAuth}/>
             <Routes>
                 {/* Public route*/}
                 <Route path='/' element={<Home/>}></Route>
                 <Route path='/About-us' element={<AboutUs/>}></Route>
                 <Route path='*' element={<ErrorPage/>}></Route>
-                <Route path='/login' element={<LoginPage/>}></Route>
+                <Route path='/login' element={<LoginPage toggleAuthentication={toggleAuthentication}/>}></Route>
 
                 {/* Private route*/}
                 <Route path='/Dashboard' element={<PrivateRoute elemToLoad={<Dashboard/>} isAuthenticated={isAuthenticated}/>}></Route>

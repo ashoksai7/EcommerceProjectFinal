@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
 import useSendData from "../../hooks/useSendData";
 import URL_CONSTANTS from "../../constants/urlConstants";
 import Axios from 'axios';
 
-const LoginPage = () =>{
+const LoginPage = ({toggleAuthentication}) =>{
     const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');   
+  const [error, setError] = useState('');
+  const navigate = useNavigate();   
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === '' || password === '') {
@@ -25,7 +27,9 @@ const LoginPage = () =>{
         // Handle successful response
         console.log('Success:', res.data);
         setError('');
+        toggleAuthentication();
         alert('Logged in successfully!');
+        navigate('/');
       } catch (error) {
         // Handle error
         if(error.response)

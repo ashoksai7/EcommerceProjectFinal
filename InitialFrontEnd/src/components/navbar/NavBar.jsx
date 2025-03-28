@@ -6,12 +6,15 @@ import './navBar.css';
 
 const NavBar = ({categories,isLoading,isAuthenticated})=>{
     // State to track if user is logged in or not
+    console.log(`Auth status is ${isAuthenticated}`);
     const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated);
     //console.log(categories);
+    
     // Function to toggle login status
-    const toggleLogin = () => {
-        setIsLoggedIn(!isLoggedIn);
-    };
+    if(isAuthenticated && !isLoggedIn){
+        setIsLoggedIn(true);
+        console.log(`Login status is ${isLoggedIn}`);
+    }
     return (
         <nav className='nav'>
         <ul className='nav-items'>
@@ -36,7 +39,7 @@ const NavBar = ({categories,isLoading,isAuthenticated})=>{
                     })
                 ):<></>
             }
-            <li key={0} onClick={toggleLogin} className="toggle-btn"><NavLink to={`/login`}>
+            <li key={0} className="toggle-btn"><NavLink to={`/login`}>
                 {isLoggedIn ? 'Logout' : 'Login'}
             </NavLink></li>
         </ul>
