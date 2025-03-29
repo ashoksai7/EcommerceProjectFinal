@@ -28,13 +28,13 @@ const AppRoutes = () => {
     const {data: categories,error,isLoading} =useFetchData(URL_CONSTANTS.GET_CATEGORIES,[]).data;
     return (
         <Router>
-            <Header categories={categories} isLoading={isLoading} isAuthenticated={isAuth}/>
+            <Header categories={categories} isLoading={isLoading} isAuthenticated={isAuth} toggleAuthentication={toggleAuthentication}/>
             <Routes>
                 {/* Public route*/}
                 <Route path='/' element={<Home/>}></Route>
                 <Route path='/About-us' element={<AboutUs/>}></Route>
                 <Route path='*' element={<ErrorPage/>}></Route>
-                <Route path='/login' element={<LoginPage toggleAuthentication={toggleAuthentication}/>}></Route>
+                <Route path='/login' element={<LoginPage isAuthenticated={isAuth} toggleAuthentication={toggleAuthentication}/>}></Route>
 
                 {/* Private route*/}
                 <Route path='/Dashboard' element={<PrivateRoute elemToLoad={<Dashboard/>} isAuthenticated={isAuthenticated}/>}></Route>

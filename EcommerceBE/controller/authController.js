@@ -122,7 +122,7 @@ const loginController = async(req,res) =>{
          * Go through bcrypt.js in this sanme folder to
          * understand better
          */
-        console.log("result",isSame);
+        //console.log("result",isSame);
         if(!isSame){
             console.log("User password",user.password);
             return res.status(400).json({
@@ -350,4 +350,4 @@ app.get("/allowIfAdmin",protectRouteMiddleWare,checkIfAdmin,getAllUserData);
 //      console.log(`Server is listening on port`, PORT);
 //  })
 
-module.exports = {signupController,loginController,protectRouteMiddleWare};
+module.exports = {signupController,loginController,protectRouteMiddleWare,getUserData};

@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
+import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 import useSendData from "../../hooks/useSendData";
 import URL_CONSTANTS from "../../constants/urlConstants";
 import Axios from 'axios';
 
-const LoginPage = ({toggleAuthentication}) =>{
-    const [username, setUsername] = useState('');
+const LoginPage = ({isAuthenticated,toggleAuthentication}) =>{
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();   
+  const navigate = useNavigate();
+  // const token = Cookies.get('jwt');
+  // console.log(`Login page re-rendered`);
+  // if(token){
+  //   const decodedToken = JSON.parse(atob(token.split('.')[1]));
+  //   const expiry = decodedToken.exp;
+  //   console.log(`Expiry is ${expiry}`);
+  // }
+  console.log(`Auth status in login ${isAuthenticated}`);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (username === '' || password === '') {
@@ -27,6 +36,7 @@ const LoginPage = ({toggleAuthentication}) =>{
         // Handle successful response
         console.log('Success:', res.data);
         setError('');
+
         toggleAuthentication();
         alert('Logged in successfully!');
         navigate('/');
