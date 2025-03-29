@@ -5,7 +5,8 @@ const URL_CONSTANTS = {
     GET_PRODUCT_BY_ID: `${BASE_URL}/${API_VERSION}/product`,
     GET_PRODUCT_BY_CAT: `${BASE_URL}/${API_VERSION}/product/category`,
     GET_CATEGORIES : `${BASE_URL}/${API_VERSION}/product/categories/product_categories`,
-    POST_LOGIN: `${BASE_URL}/${API_VERSION}/auth/login`
+    POST_LOGIN: `${BASE_URL}/${API_VERSION}/auth/login`,
+    GET_USER_DETAILS: `${BASE_URL}/${API_VERSION}/auth/getUserData`
 }
 
 export default URL_CONSTANTS;

@@ -22,7 +22,7 @@ const ProductList = ()=>{
             {
                 prodList&&prodList.length?(
                     prodList.map((prod,idx)=>{
-                        return <Product prod={prod}/>
+                        return <Product prod={prod} idx={idx}/>
                     })
                 ):<div>{error}</div>
             }

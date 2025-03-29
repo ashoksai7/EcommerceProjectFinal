@@ -11,7 +11,7 @@ const useFetchData = (url, initialData) => {
         setIsLoading(true);
         try{
             //console.log("awaiting");
-            const res = await Axios.get(url);
+            const res = await Axios.get(url,{withCredentials:true});
             //console.log(res);
             setData(res.data);
             setError(null);

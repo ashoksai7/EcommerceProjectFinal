@@ -4,7 +4,7 @@ import {
     Route
 } from 'react-router-dom';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Header from '../components/header/Header';
 import Home from '../components/home/Home';
@@ -24,6 +24,10 @@ const AppRoutes = () => {
         isAuth = isAuthenticated;
         console.log(isAuthenticated);
     }
+
+    useEffect(() => {
+        console.log(`The component rendered or updated and isAuthenticated is ${isAuthenticated}`);
+    });    
     //const {data: categories,error,isLoading} = useFetchData('https://fakestoreapi.com/products/categories'); {/* data can be used with alias categories */}
     const {data: categories,error,isLoading} =useFetchData(URL_CONSTANTS.GET_CATEGORIES,[]).data;
     return (
@@ -37,7 +41,7 @@ const AppRoutes = () => {
                 <Route path='/login' element={<LoginPage isAuthenticated={isAuth} toggleAuthentication={toggleAuthentication}/>}></Route>
 
                 {/* Private route*/}
-                <Route path='/Dashboard' element={<PrivateRoute elemToLoad={<Dashboard/>} isAuthenticated={isAuthenticated}/>}></Route>
+                <Route path='/Dashboard' element={<PrivateRoute elemToLoad={<Dashboard/>} isAuthenticated={isAuth}/>}></Route>
 
                 {/* Dynamic routing */}
                 <Route path='/products/:categoryName' element={<ProductList/>}></Route>

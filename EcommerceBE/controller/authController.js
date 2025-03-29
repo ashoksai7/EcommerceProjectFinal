@@ -147,6 +147,30 @@ const loginController = async(req,res) =>{
     }
 }
 
+const logoutController = async(req,res) => {
+    try {
+        let jwt = req.cookies.jwt;
+        if(!jwt){
+            return res.status(400).json({
+                message:"pls login first"
+            })
+        }
+        res.clearCookie('jwt',{
+            httpOnly:true
+        })
+        
+        res.status(200).json({
+            message: "User logged out successfully"
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message:err.message,
+            status:"fail"
+        })
+    }
+}
+
 //A middleware to check the login status of user using JWT
 const protectRouteMiddleWare = async(req,res,next)=>{
     /**
@@ -155,7 +179,7 @@ const protectRouteMiddleWare = async(req,res,next)=>{
      * 3. you can add that property to req object and call next
      */
     try{
-        console.log(req.cookies);
+        console.log(`Cookies in protectroute ${req.cookies.jwt}`);
         let jwt = req.cookies.jwt;
         if(!jwt){
             return res.status(400).json({
@@ -200,7 +224,7 @@ const getUserData = async(req,res) => {
         const id = req.userId;
         const userProfile = await userModel.findById(id);
         res.status(200).json({
-            userProfile,
+            data:userProfile,
             status:"success"
         })
     } catch (err) {
@@ -350,4 +374,4 @@ app.get("/allowIfAdmin",protectRouteMiddleWare,checkIfAdmin,getAllUserData);
 //      console.log(`Server is listening on port`, PORT);
 //  })
 
-module.exports = {signupController,loginController,protectRouteMiddleWare,getUserData};
+module.exports = {signupController,loginController,protectRouteMiddleWare,getUserData, logoutController};

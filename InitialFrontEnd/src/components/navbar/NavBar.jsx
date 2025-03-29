@@ -45,9 +45,12 @@ const NavBar = ({categories,isLoading,isAuthenticated,toggleAuthentication})=>{
             {
                 categories&&categories.length?(
                     categories.map((cat,idx)=>{
-                        return <li key={idx+1} className="nav-link"><NavLink to={`/products/${cat}`}>{cat}</NavLink></li>
+                        return <li key={idx+2} className="nav-link"><NavLink to={`/products/${cat}`}>{cat}</NavLink></li>
                     })
                 ):<></>
+            }
+            {
+                 <li key={1} className="toggle-btn"><NavLink to={`/dashboard`}>Dashboard</NavLink></li>
             }
             <li key={0} onClick = {toggleLoggedIn} className="toggle-btn"><NavLink to={`/login`}>
                 {isLoggedIn ? 'Logout' : 'Login'}

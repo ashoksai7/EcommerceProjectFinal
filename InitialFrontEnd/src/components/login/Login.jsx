@@ -31,7 +31,7 @@ const LoginPage = ({isAuthenticated,toggleAuthentication}) =>{
       };
 
       try {
-        const res = await Axios.post(`${URL_CONSTANTS.POST_LOGIN}`,requestBody);
+        const res = await Axios.post(`${URL_CONSTANTS.POST_LOGIN}`,requestBody,{withCredentials: true});
         //console.log(res);
         // Handle successful response
         console.log('Success:', res.data);
